@@ -102,8 +102,6 @@ Log into the Domain Controller
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ee2fed51-2202-4bf1-8b93-a4590e45b328)
 
-![image](https://github.com/kavismith/active-directory/assets/143667203/dd7baca7-0bb0-4ae9-b111-c420394a2870)
-
 Enable ICMPv4 on the local windows firewall by searching in the search bar fpor wf.msc and then select Microsoft Common Console Document. 
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/4d2f3aa0-a890-43de-8ef0-f0cfe75874a0)
