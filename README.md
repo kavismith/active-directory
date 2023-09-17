@@ -120,18 +120,38 @@ GO back to Client-1, ypu should see client-1 ping to DC-1, start to reply.
 
 
 <h2>Install Active Directory</h2>
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/7dbe73e3-8e99-45bd-ad85-fc4c148e86f9)
+![image](https://github.com/kavismith/active-directory/assets/143667203/2f19d350-60da-46fc-bc06-9f7d0276daec)
+![image](https://github.com/kavismith/active-directory/assets/143667203/6e76ae91-c288-4953-961d-7b275c1dab80)
+![image](https://github.com/kavismith/active-directory/assets/143667203/be95e565-3dc9-476a-b194-d9ee8f27afb8)
+
+
+
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Log into Domain Control if you are not already logged in. GO to search and search Server Manager if its not already loaded from when you first logged into Domanin Controller. Then select Add rolles and Features.Click next, for the install type section click next, and when you get to server selection make sure the server pool say DC-1 private ip address and then click next. For the server role make sure to click on Active Directory Domain Services and click on add features. Select next until you get to confirmation section and then click install an now Achtive Directory is installing
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+![image](https://github.com/kavismith/active-directory/assets/143667203/4798da25-2971-4092-8686-8716b30cebd1)
+
+.`![image](https://github.com/kavismith/active-directory/assets/143667203/41f3e910-c3d4-4121-8dc1-051370f4a611)
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+click on the flag next to the exclamation mark to you right hand corner and select promote this server to a domain controller. This is the final steps to installing active directory and the server will turn into a Domain Controller. Select add a new forest in the Deployment Configuration section. Now, name the private domain to kavidomain.com. Set your password. Click next until you get to the install section, then press install. 
+Name of Private Domain: kavidomain.com
+Set up your Password
+DNS Options:Click Next
+Additional Options: Click Next
+Paths: Next
+Review Options: Next 
+
+
+
+Prerequisites Check: click next and allow the prerequisites check go through and click install
+
+  
 </p>
 <br />
