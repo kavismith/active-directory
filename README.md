@@ -134,24 +134,139 @@ Log into Domain Control if you are not already logged in. GO to search and searc
 </p>
 <br />
 
-<p>
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/4798da25-2971-4092-8686-8716b30cebd1)
 
-.`![image](https://github.com/kavismith/active-directory/assets/143667203/41f3e910-c3d4-4121-8dc1-051370f4a611)
+![image](https://github.com/kavismith/active-directory/assets/143667203/41f3e910-c3d4-4121-8dc1-051370f4a611)
 </p>
 <p>
 click on the flag next to the exclamation mark to you right hand corner and select promote this server to a domain controller. This is the final steps to installing active directory and the server will turn into a Domain Controller. Select add a new forest in the Deployment Configuration section. Now, name the private domain to kavidomain.com. Set your password. Click next until you get to the install section, then press install. 
-Name of Private Domain: kavidomain.com
-Set up your Password
-DNS Options:Click Next
-Additional Options: Click Next
-Paths: Next
-Review Options: Next 
 
-
-
-Prerequisites Check: click next and allow the prerequisites check go through and click install
-
-  
 </p>
 <br />
+
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/157d7772-0e62-4491-b820-3c9efec8b2bf)
+
+</p>
+<p>
+Afte ryou have successfully install Active Directory, your Remote desktop will restart. You would then need to sign back in using kavidomain.com/labuser and the password you set.
+
+</p>
+<br />
+
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/5ceeb292-3d05-4652-a136-e99569ef9ef8)
+</p>
+<p>
+
+Once you have successfully signed in, Server Manager will automatically display on the screen but if it do not, just type in the search bar server manager and you can pull it up that way. Select tools from the  Server Manager and then select Actove Directory Users and Computers or you can click start and search for Active Directory that way as well.
+
+</p>
+<br />
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/ca906a93-3ede-4f4c-afb3-dfcb5bb385f1)
+![image](https://github.com/kavismith/active-directory/assets/143667203/dbfd57ef-3da2-435e-8628-259eda1ed6b1)
+![image](https://github.com/kavismith/active-directory/assets/143667203/122816c9-601d-473d-a147-cc52dc86be51)
+![image](https://github.com/kavismith/active-directory/assets/143667203/1c5b4a78-b44f-4333-b4a9-d1d8a88c40b1)
+
+</p>
+<p>
+
+We are going to create a few organizational Units which are like folders. Right click on your domain, select new and then select organizational unit. Create 2 Organizational Units called "_EMPLOYEES" & "_ADMINS"
+
+</p>
+<br />
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/63618c18-0139-4ee4-b902-6d46e8e9158f)
+![image](https://github.com/kavismith/active-directory/assets/143667203/089d8416-833b-4514-a1f3-7442c1281382)
+![image](https://github.com/kavismith/active-directory/assets/143667203/c568d1a9-53ed-4b36-8d34-161c609796cd)
+
+
+
+</p>
+<p>
+
+Now we are going to log out of labuser and create and Admin account and sign into that account. Click on _ADMINS, then right click on the empty space select new and then click on user. 
+- First name: Tiffany
+- Last name: Smith
+- Username: tiffany_admin
+- Set your Password
+
+</p>
+<br />
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/ec0e2c2e-f900-4e56-9190-0c7fc93e89c9)
+![image](https://github.com/kavismith/active-directory/assets/143667203/83f9defe-9b60-4504-b5ca-511d95c3df01)
+![image](https://github.com/kavismith/active-directory/assets/143667203/ce3d8b59-8df0-4647-b55b-1b7d688e46ab)
+
+</p>
+<p>
+
+Next we are going to move the admin to the admin group to make it an actual admin domain. Right click on the tiffany smith user, then go to properties and select member of. Click add. In the domain group box, type "Domain" and click check and select "Domain Admin" click apply and then ok.
+</p>
+<br />
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/defa1ebc-d424-4b4d-8e5c-2ead1a959809)
+![image](https://github.com/kavismith/active-directory/assets/143667203/4832fc75-7ee3-4603-acdf-7245fd364489)
+
+</p>
+<p>
+
+logoff to log in as "tiffany_admin". To check to make sure you are conncted properly, go to start and search for "CMB" and select "Command Prompt". Type in "whoami" and you should see the domain ypu are conncted to and then type in "hostname" and it should read DC-1
+
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/157d7772-0e62-4491-b820-3c9efec8b2bf)
+
+</p>
+<p>
+In Azure Portal, set client-1's DNS settings to the DC-1's private ip address. Go to DC-1 and copy its private ip address. Go to virtual machines and click on Client-1. Select networking and select the NIc(Network Interface). Click on DNS servers. Change the DNS server to custom and paste DC-1 private ip address. Select save. Then restart Client-1 from Azure Portal.
+</p>
+<br />
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/796f4d73-f0a8-46bb-bc6b-25c275eed164)
+![image](https://github.com/kavismith/active-directory/assets/143667203/736eec5c-a1d0-4e92-837a-7543ff5768a2)
+![image](https://github.com/kavismith/active-directory/assets/143667203/3a283446-83aa-4a83-a45a-002c2d0d1ffd)
+![image](https://github.com/kavismith/active-directory/assets/143667203/d6f830e4-6911-4dcf-8089-9a8ab5bfdb90)
+
+
+</p>
+<p>
+
+First, sign back into Client-1 with its new DNS settings. Log into it using (labuser). Now, join it to the domain. To joing the domain right clickon start and select system. Select "rename this PC(advanced)". Select Domain and type in your domain name "kavidomain.com" and select ok. A new login window will show up to change the domain name. Enter the domain name and admin login you set up in DC-1. For this practice I used "kavidomain.com\tiffany_admin and entered my password I set in DC-1. Select ok and now Client-1 will restart. 
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/2deabe7f-7ae5-4dd4-bf75-b6730d759709)
+![image](https://github.com/kavismith/active-directory/assets/143667203/94ba7cad-5fa4-4317-8117-9af09ddaaa7d)
+![image](https://github.com/kavismith/active-directory/assets/143667203/bc5fde52-8b8b-4abd-8c28-d0f6ddf27e86)
+![image](https://github.com/kavismith/active-directory/assets/143667203/39bbfa60-124a-49b2-98cb-db93ec5e46d8)
+![image](https://github.com/kavismith/active-directory/assets/143667203/0f4a1d1d-ac42-43de-8b7b-f83364c7c731)
+
+</p>
+<p>
+
+Sign back into Client-1 using the domain name "kavidomain.com\tiffany_admin and password you created. Right click on start and go to systems. Click on "Remote Deskop" and then click "select users that can remotely access this PC". Select Add. Enter "omain Users and click check names, you will then see Domain Users have been selected. Click okay. Now ou will be abe to the domain in the box
+
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/2a03bd60-416f-413b-b90d-ebe4aeb74025)
+![image](https://github.com/kavismith/active-directory/assets/143667203/5f710d70-76e7-4b54-b99f-f13322dd95b8)
+![image](https://github.com/kavismith/active-directory/assets/143667203/986c6644-7b65-4338-91ae-d1eeec5742a5)
+![image](https://github.com/kavismith/active-directory/assets/143667203/2ef33021-8905-417b-875c-792626f4d04c)
+![image](https://github.com/kavismith/active-directory/assets/143667203/9f7d3903-dd4d-4de1-bb7f-91f8a3151c0e)
+
+
+</p>
+<p>
+
+Log back into DC-1 as tiffany_admin. open powershell_ise as an administrator. Then create a file and place the content of script in it. To your left hand corner click on the document with a star on it and paste the script in it and select runwhich is the green arrow button This script is gping to create accounts in the _EMPLOYEES FOLD. It will create accounts for 10,000 users that have random names.
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/182898f6-71a8-419e-b3d4-9c536fa63df3)
+![image](https://github.com/kavismith/active-directory/assets/143667203/3e1a3be6-2016-413b-9118-0472b1c8bbbf)
+![image](https://github.com/kavismith/active-directory/assets/143667203/793f8e66-a795-4666-8d4a-7958b1001bed)
+![image](https://github.com/kavismith/active-directory/assets/143667203/7ee5ebbe-d7d7-419b-b975-4105593246b3)
+![image](https://github.com/kavismith/active-directory/assets/143667203/5d2cc212-5c3a-4f52-84ba-1d4dd04d1ad2)
+
+
+</p>
+<p>
+
+After selecting "Run", you should be able to see all the users random names. Now, open up active directory users and computers. Select domain. Click on file "_EMPLOYEES" and the users names will appear. Now, try to log into Client-1 using one of the users name. Alll the users profiles have a default password "Passord1".Now, Select a random user "cem.tecox" and try to sign in with using "Password1". Log in was successful. To check to make usre you are logged in correctly open up command prompt and type in "whoami" and it should bring up domain kavidomain\cem.tecox
