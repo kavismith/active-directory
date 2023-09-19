@@ -28,24 +28,51 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <h2>Setup Resource Group</h2>
 
 <h2>Create Resource Group</h2>
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/5651d677-6c33-46e9-ad6a-33e19631263f)
 
 
 </p>
 <p>
-First, create your Resource droug called "RG-AD". 
-
-![image](https://github.com/kavismith/active-directory/assets/143667203/1d857697-f2ca-43fa-985a-8bdac62a78ba)
-![image](https://github.com/kavismith/active-directory/assets/143667203/b9a05dbe-8390-4494-9ac5-1185cc64f0ad)
+First, create your Resource Group called "RG-AD". 
 
 <h2>Create VM "DC-1"</h2>
-Then create a Virtual machine Named "DC-1"(Domain Controller), make sure that your virtual machines region is the same as the resource group. The image needs to be "Windows server 2022", the size should be 2 vcpus and then create you a username and password that you can remember. Go to netwok and make sure DC-1 create its own virtual netork.
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/1d857697-f2ca-43fa-985a-8bdac62a78ba)
+
+Begin by creating a Virtual Machine with the following specifications:
+
+- Name the virtual machine "DC-1" and designate it as a Domain Controller.
+- Ensure that the region for your virtual machine matches the resource group's region.
+- Choose the "Windows Server 2022" image.
+- Set the virtual machine size to have 2 vCPUs.
+- Create a username and password that you can easily remember.
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/b9a05dbe-8390-4494-9ac5-1185cc64f0ad)
+
+After configuring the virtual machine details, proceed to the network settings by clicking "Next." In the network configuration, make sure that "DC-1" creates its own virtual network. By following these steps, you will create a Virtual Machine named "DC-1," running Windows Server 2022, with the specified resources and network configuration, ready for use as a Domain Controller.
+
+<h2>Create VM "Client-1"</h2>
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ab6d1884-9871-4cfe-b6fa-68fdcea74f79)
+
+Begin by setting up the virtual machine with the following specifications:
+
+- Name the virtual machine "Client-1."
+- Ensure that the chosen region matches the region of both the resource group and the DC-1 virtual machine.
+- Select the "Windows 10 Pro" image as the operating system.
+- Allocate 2 vCPUs for the Client-1 virtual machine.
+- You can either create a different username and password for Client-1, or for practice purposes, use the same username and password that was used for DC-1.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/be9b9e07-c8f4-42de-92da-47d6c772072a)
+
+Don't forget to check the license box for Client-1 to ensure proper licensing.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/9bc74283-731e-4251-94e5-f85b5c59eb35)
 
-Last, create another virtual machine named "Client-1", with the same region as the resource group and DC-1 virtual machine. The image needs to be "Windows 10 pro" and  size for Client-1 should be 2 vcpu. You can create a different username and password but for this practice, the same uusername and password from DC-1 was used for Client-1 virtual Machine . Don't forget to chech the license box for Client-1. Go to networking and make sure the virtual network for Client-1 is DC-1 because they need to be working on the same network.
+In the networking configuration, make sure that the virtual network for Client-1 matches that of DC-1, as both virtual machines need to be part of the same network to work together effectively. By following these steps, you will create a virtual machine named "Client-1" with the specified settings, allowing it to work seamlessly with the DC-1 virtual machine on the same network.
+
+
 </p>
 <br />
 
@@ -54,63 +81,69 @@ Last, create another virtual machine named "Client-1", with the same region as t
 ![image](https://github.com/kavismith/active-directory/assets/143667203/4a7b2bba-a20b-49b5-994a-3d421c12cdda)
 </p>
 <p>
-Set Domain Dontroller's NIC Private IP address to be static. GO back to virtual machines and select DC-1. Select networking under settings.
+To set the Domain Controller's NIC (Network Interface Card) Private IP address to be static, Return to the list of virtual machines, and select "DC-1." Under the virtual machine's settings, locate and select "Networking."
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/00b9c5a9-9f4f-4a77-9c4f-c70c6734d6a4)
 
-Click on the Network Interface(NIC)
+Within the "Networking" section, click on the Network Interface (NIC) associated with DC-1.
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/9b3240db-4162-4a2d-935d-43e75ce0a61c)
 
-Then select IP configuration
-![image](https://github.com/kavismith/active-directory/assets/143667203/2745c1ba-2ee3-460b-9ebc-6bc4c1ab1d26)
+Once you've accessed the NIC settings, navigate to the "IP Configuration" section.
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/0ebbb141-9ad4-4e50-8cb1-5fe5cce8df7a)
+
+Look for the option labeled "Dynamic IP address" and switch it to "Static."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/28b30cc4-eeca-425d-b741-9cf4538892b8)
 
-Click on the Dynamic IP addess and switch it to static. By changing the ip address to static, the ip address will never change even if you cut off the computer for a long time. 
+By making this change and setting the IP address to static, you ensure that the IP address assigned to DC-1 will remain constant, even if you shut down the computer for an extended period. This stability is important for the proper functioning of a Domain Controller within a network environment.
 </p>
 <br />
+
 <h2>Ensure Connectivity between Client-1 and Domain Controller</h2>
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/d3e5c3fd-0891-4934-98dc-eb63c24da259)
+
+Connect to Client-1 using Remote Desktop.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/f7aa72dd-604c-4f95-b710-a2add9d4145d)
 
-
-Login into Client-1 through remote desktop
-
-![image](https://github.com/kavismith/active-directory/assets/143667203/16d4cead-b304-411c-bfb0-b9282e35b610)
-In sthe Search bar, search for Command Propmt
+Login into Client-1 through Remote Desktop
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/e8a7a052-cb89-41ed-931e-ecd04d7d1e61)
 
-  While CLient-1 is Remote desktop is connecting, get the Domain Controller's pprivate IP address taht we need to ping. Go to virtual machine and select the Domain Controller adn copy DC-1 privvate IP address
+While the Remote Desktop connection to Client-1 is establishing, you need to obtain the Domain Controller's private IP address. To do this, go back to the list of virtual machines, select the Domain Controller (DC-1), and copy its private IP address.
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/16d4cead-b304-411c-bfb0-b9282e35b610)
+
+Once you have DC-1's private IP address, open the Command Prompt on Client-1 by searching for it in the search bar.
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/86a003d3-a381-4247-b09f-1c1617d95b7b)
 </p>
 <p>
- Then Ping DC-1's private IP address with "Ping -t <ip address>(perpetual ping), which will probably fail because DC-1 firewall is blocking ICMP traffic.
+ Ping DC-1's private IP address using the command: ping -t <ip address> (where <ip address> is the IP address you copied). This command will perform a perpetual ping, although it's likely to fail initially due to the DC-1 firewall blocking ICMP traffic.
 
-  
-![image](https://github.com/kavismith/active-directory/assets/143667203/1abb093f-ba0e-4e73-9d3a-01d4b90a3481)
 ![image](https://github.com/kavismith/active-directory/assets/143667203/296c3c17-8c9d-4ccf-822b-f728c8ac4e76)
 
 
-Log into the Domain Controller
+Log into the Domain Controller via remote desktop***
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ee2fed51-2202-4bf1-8b93-a4590e45b328)
 
-Enable ICMPv4 on the local windows firewall by searching in the search bar fpor wf.msc and then select Microsoft Common Console Document. 
+To enable ICMPv4 on the local Windows Firewall, search for "wf.msc" in the search bar on DC-1 and select "Microsoft Common Console Document."
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/4d2f3aa0-a890-43de-8ef0-f0cfe75874a0)
-Once windows firewall Defender is open select Inbound Rules.
+
+Once Windows Firewall with Advanced Security is open, select "Inbound Rules."
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/dd7baca7-0bb0-4ae9-b111-c420394a2870)
 
-At the top ypu will see different groups and click on Protocol to oragnice all protocols. Select all Core Networking Destination then right click and select Enable Rules
-
+In the top section, you'll find different groups; click on "Protocol" to organize all protocols. Locate "Core Networking Destination," right-click on it, and select "Enable Rule."
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/040603f4-3fe0-4f07-bb46-f82f9e0b5a24)
 
-GO back to Client-1, ypu should see client-1 ping to DC-1, start to reply.
+Return to Client-1, where you initiated the perpetual ping earlier. You should now see Client-1 successfully pinging DC-1, and you'll receive ping responses as the ICMP traffic is now allowed through the firewall on DC-1.
 </p>
 <br />
 
@@ -118,25 +151,36 @@ GO back to Client-1, ypu should see client-1 ping to DC-1, start to reply.
 <h2>Install Active Directory</h2>
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/7dbe73e3-8e99-45bd-ad85-fc4c148e86f9)
+Log into Domain Control if you are not already logged in. Go to the search bar and search for Server Manager if it's not already loaded from when you first logged into the Domain Controller. Next, select "Add Roles and Features."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/2f19d350-60da-46fc-bc06-9f7d0276daec)
+Click "Next" for the install type section. When you get to the server selection, ensure that the server pool says "DC-1 private IP address," and then click "Next." For the server role, make sure to click on "Active Directory Domain Services" 
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/6e76ae91-c288-4953-961d-7b275c1dab80)
+and click on "Add Features. Select "Next" until you reach the confirmation section. ***
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/be95e565-3dc9-476a-b194-d9ee8f27afb8)
-
-
-
+Once the confirmation is completed, click the "Install" button.
 </p>
 <p>
-Log into Domain Control if you are not already logged in. GO to search and search Server Manager if its not already loaded from when you first logged into Domanin Controller. Then select Add rolles and Features.Click next, for the install type section click next, and when you get to server selection make sure the server pool say DC-1 private ip address and then click next. For the server role make sure to click on Active Directory Domain Services and click on add features. Select next until you get to confirmation section and then click install an now Achtive Directory is installing
+
 </p>
 <br />
 
 
-![image](https://github.com/kavismith/active-directory/assets/143667203/4798da25-2971-4092-8686-8716b30cebd1)
+![image](https://github.com/kavismith/active-directory/assets/143667203/f4481222-29b9-4cae-ac56-7b73af0accab)
 
-![image](https://github.com/kavismith/active-directory/assets/143667203/41f3e910-c3d4-4121-8dc1-051370f4a611)
+Begin by clicking on the flag icon located next to the exclamation mark in the top right-hand corner of the screen. From the menu that appears, select "Promote this server to a domain controller." This step represents the final stage of the Active Directory installation, during which the server will be transformed into a Domain Controller. In the "Deployment Configuration" section, opt to "Add a new forest." Provide the desired name for the private domain, which should be "kavidomain.com."
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/9df67453-9c8e-4650-9746-948a977c62cc)
+
+Set the required password for this process.
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/537979bd-dfb5-45d4-96b6-15e8f67e79e6)
+
+Continue by clicking "Next" until you reach the "Install" section. Finally, press the "Install" button to initiate the Active Directory installation. By following these steps, you will successfully configure the server as a Domain Controller, completing the installation of Active Directory with the specified domain name, "kavidomain.com."
 </p>
 <p>
-click on the flag next to the exclamation mark to you right hand corner and select promote this server to a domain controller. This is the final steps to installing active directory and the server will turn into a Domain Controller. Select add a new forest in the Deployment Configuration section. Now, name the private domain to kavidomain.com. Set your password. Click next until you get to the install section, then press install. 
 
 </p>
 <br />
@@ -146,7 +190,7 @@ click on the flag next to the exclamation mark to you right hand corner and sele
 
 </p>
 <p>
-Afte ryou have successfully install Active Directory, your Remote desktop will restart. You would then need to sign back in using kavidomain.com/labuser and the password you set.
+After you have successfully installed Active Directory, your Remote Desktop will restart, and you will need to sign back in using the credentials "kavidomain.com/labuser" and the password you previously set.
 
 </p>
 <br />
@@ -156,67 +200,97 @@ Afte ryou have successfully install Active Directory, your Remote desktop will r
 </p>
 <p>
 
-Once you have successfully signed in, Server Manager will automatically display on the screen but if it do not, just type in the search bar server manager and you can pull it up that way. Select tools from the  Server Manager and then select Actove Directory Users and Computers or you can click start and search for Active Directory that way as well.
-
+Once you have successfully signed in, Server Manager will automatically appear on the screen; however, if it does not, you can simply type "Server Manager" into the search bar to access it. From there, select "Tools" within Server Manager, and then choose "Active Directory Users and Computers." Alternatively, you can also click the "Start" menu and search for "Active Directory" to access it.
 </p>
 <br />
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ca906a93-3ede-4f4c-afb3-dfcb5bb385f1)
+We will create several Organizational Units (OUs) that function as folders within Active Directory. To do this, right-click on your domain, choose "New," and then select "Organizational Unit."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/dbfd57ef-3da2-435e-8628-259eda1ed6b1)
+
+Create one Organizational Units named "_EMPLOYEES" 
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/122816c9-601d-473d-a147-cc52dc86be51)
+
+Create two Organizational Units named "_ADMINS" 
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/1c5b4a78-b44f-4333-b4a9-d1d8a88c40b1)
 
 </p>
 <p>
 
-We are going to create a few organizational Units which are like folders. Right click on your domain, select new and then select organizational unit. Create 2 Organizational Units called "_EMPLOYEES" & "_ADMINS"
-
 </p>
 <br />
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/63618c18-0139-4ee4-b902-6d46e8e9158f)
+
+Navigate to the "_ADMINS" Organizational Unit (OU). Right-click on the empty space within the "_ADMINS" OU and select "New," then click on "User."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/089d8416-833b-4514-a1f3-7442c1281382)
+
+Provide the following user details:
+- First Name: Tiffany
+- Last Name: Smith
+- Username: tiffany_admin
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/c568d1a9-53ed-4b36-8d34-161c609796cd)
 
+Set a password for the user account.
 
 
 </p>
 <p>
-
-Now we are going to log out of labuser and create and Admin account and sign into that account. Click on _ADMINS, then right click on the empty space select new and then click on user. 
-- First name: Tiffany
-- Last name: Smith
-- Username: tiffany_admin
-- Set your Password
 
 </p>
 <br />
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ec0e2c2e-f900-4e56-9190-0c7fc93e89c9)
+
+Next, we will add the "Tiffany Smith" user to the admin group, granting administrative privileges within the domain. Right-click on the "Tiffany Smith" user account. Select "Properties" from the context menu.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/83f9defe-9b60-4504-b5ca-511d95c3df01)
+
+In the "Properties" window, navigate to the "Member Of" tab. Click the "Add" button to add the user to a group. In the "Enter the object names to select" field, type "Domain" and then click the "Check Names" button to verify and select "Domain Admin."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ce3d8b59-8df0-4647-b55b-1b7d688e46ab)
 
+Click "Apply" and then "OK" to save the changes. By following these steps, you will have added the "Tiffany Smith" user to the "Domain Admin" group, effectively granting administrative privileges within the domain.
 </p>
 <p>
 
-Next we are going to move the admin to the admin group to make it an actual admin domain. Right click on the tiffany smith user, then go to properties and select member of. Click add. In the domain group box, type "Domain" and click check and select "Domain Admin" click apply and then ok.
 </p>
 <br />
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/defa1ebc-d424-4b4d-8e5c-2ead1a959809)
+
+Log out of the "labuser" account. Log in using the "tiffany_admin" account.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/4832fc75-7ee3-4603-acdf-7245fd364489)
 
+To ensure you are connected correctly, click the "Start" button and search for "CMD" or "Command Prompt." Select "Command Prompt" from the search results. In the Command Prompt window, type in "whoami" and press Enter. You should see the domain to which you are connected. Next, type in "hostname" and press Enter. It should display "DC-1."
 </p>
 <p>
 
-logoff to log in as "tiffany_admin". To check to make sure you are conncted properly, go to start and search for "CMB" and select "Command Prompt". Type in "whoami" and you should see the domain ypu are conncted to and then type in "hostname" and it should read DC-1
 
+![image](https://github.com/kavismith/active-directory/assets/143667203/e479e9f4-461b-43cf-9e4e-b2c0546b8a95)
 
-![image](https://github.com/kavismith/active-directory/assets/143667203/157d7772-0e62-4491-b820-3c9efec8b2bf)
+In the Azure Portal, configure Client-1's DNS settings to use DC-1's private IP address. First, obtain DC-1's private IP address. Then, navigate to the "Virtual Machines" section, select "Client-1," access its network settings, choose the relevant Network Interface (NIC).
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/1bd8b21b-a021-4563-b66e-220554635553)
+
+Click on "DNS servers 
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/146186cf-8883-4fad-b76c-9effc3e1b5cb)
+
+Set the DNS server to "Custom," paste DC-1's private IP address, save the changes
+
+![image](https://github.com/kavismith/active-directory/assets/143667203/5c2c227e-a3a0-4b54-818d-697ab983d3a7)
+
+And finally, restart Client-1 from the Azure Portal.
 
 </p>
 <p>
-In Azure Portal, set client-1's DNS settings to the DC-1's private ip address. Go to DC-1 and copy its private ip address. Go to virtual machines and click on Client-1. Select networking and select the NIc(Network Interface). Click on DNS servers. Change the DNS server to custom and paste DC-1 private ip address. Select save. Then restart Client-1 from Azure Portal.
 </p>
 <br />
 
