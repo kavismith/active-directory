@@ -204,6 +204,8 @@ Once you have successfully signed in, Server Manager will automatically appear o
 </p>
 <br />
 
+<h2>Create An Admin and Normal User Account In AD</h2>
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/ca906a93-3ede-4f4c-afb3-dfcb5bb385f1)
 We will create several Organizational Units (OUs) that function as folders within Active Directory. To do this, right-click on your domain, choose "New," and then select "Organizational Unit."
 
@@ -272,6 +274,7 @@ To ensure you are connected correctly, click the "Start" button and search for "
 </p>
 <p>
 
+<h2>Join Client-1 To Your Domain(kavidomain.com)</h2>
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/e479e9f4-461b-43cf-9e4e-b2c0546b8a95)
 
@@ -295,48 +298,93 @@ And finally, restart Client-1 from the Azure Portal.
 <br />
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/796f4d73-f0a8-46bb-bc6b-25c275eed164)
+
+Sign back into Client-1 using its new DNS settings, logging in as "labuser."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/736eec5c-a1d0-4e92-837a-7543ff5768a2)
+
+Right-click on the "Start" button and select "System."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/3a283446-83aa-4a83-a45a-002c2d0d1ffd)
+
+ In the System settings, choose "Rename this PC (advanced)."
+ 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/d6f830e4-6911-4dcf-8089-9a8ab5bfdb90)
 
+Select the "Domain" option and enter your domain name as "kavidomain.com." Click "OK." A new login window will appear for changing the domain name. Enter the domain name and the admin login credentials you set up in DC-1. In this practice, it's "kavidomain.com\tiffany_admin," and enter the password set in DC-1. Click "OK," and Client-1 will restart.
 
 </p>
 <p>
 
-First, sign back into Client-1 with its new DNS settings. Log into it using (labuser). Now, join it to the domain. To joing the domain right clickon start and select system. Select "rename this PC(advanced)". Select Domain and type in your domain name "kavidomain.com" and select ok. A new login window will show up to change the domain name. Enter the domain name and admin login you set up in DC-1. For this practice I used "kavidomain.com\tiffany_admin and entered my password I set in DC-1. Select ok and now Client-1 will restart. 
+<h2>Set Up Remote Desktop For Non-Administrative Users On Client-1</h2>
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/2deabe7f-7ae5-4dd4-bf75-b6730d759709)
+
+Sign back into Client-1 using the domain name "kavidomain.com\tiffany_admin" and the password you previously created.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/94ba7cad-5fa4-4317-8117-9af09ddaaa7d)
+
+Right-click on the "Start" button and select "System."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/bc5fde52-8b8b-4abd-8c28-d0f6ddf27e86)
+
+Click on "Remote Desktop" in the system settings.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/39bbfa60-124a-49b2-98cb-db93ec5e46d8)
+
+Next, click on "Select users that can remotely access this PC." Select the "Add" button to add users who should have remote access. Enter "Domain Users" and click "Check Names." You will see that "Domain Users" has been selected. Click "OK."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/0f4a1d1d-ac42-43de-8b7b-f83364c7c731)
 
+Now, users from the domain will have permission to remotely access Client-1 using Remote Desktop.
 </p>
 <p>
 
-Sign back into Client-1 using the domain name "kavidomain.com\tiffany_admin and password you created. Right click on start and go to systems. Click on "Remote Deskop" and then click "select users that can remotely access this PC". Select Add. Enter "omain Users and click check names, you will then see Domain Users have been selected. Click okay. Now ou will be abe to the domain in the box
-
+<h2>Create Different Users & Log In With One User</h2>
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/2a03bd60-416f-413b-b90d-ebe4aeb74025)
+
+Log back into DC-1 as "tiffany_admin." Open PowerShell ISE as an administrator.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/5f710d70-76e7-4b54-b99f-f13322dd95b8)
+
+Within PowerShell ISE, create a new script file and paste the content of the script into it. In the top left-hand corner of PowerShell ISE, you'll find a document icon with a star on it. Click on it to save the script.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/986c6644-7b65-4338-91ae-d1eeec5742a5)
+
+Go to the script and right click and copy.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/2ef33021-8905-417b-875c-792626f4d04c)
+
+After saving the script, click the green arrow button, which represents "Run." This will execute the script.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/9f7d3903-dd4d-4de1-bb7f-91f8a3151c0e)
 
+The script you're running will create accounts for 10,000 users with random names in the "_EMPLOYEES" folder. After clicking "Run" in PowerShell ISE, you should see the random names of all the users generated by the script. 
 
 </p>
 <p>
 
-Log back into DC-1 as tiffany_admin. open powershell_ise as an administrator. Then create a file and place the content of script in it. To your left hand corner click on the document with a star on it and paste the script in it and select runwhich is the green arrow button This script is gping to create accounts in the _EMPLOYEES FOLD. It will create accounts for 10,000 users that have random names.
 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/182898f6-71a8-419e-b3d4-9c536fa63df3)
+
+Open "Active Directory Users and Computers." Select your domain. Click on the folder "_EMPLOYEES," and you will see the list of user names that were generated.
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/3e1a3be6-2016-413b-9118-0472b1c8bbbf)
+
+To test the user accounts, try logging into Client-1 using one of the user names. Keep in mind that all user profiles have a default password of "Password1."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/793f8e66-a795-4666-8d4a-7958b1001bed)
+
+Select a random user, such as "cem.tecox," and attempt to sign in using the password "Password1."
+
 ![image](https://github.com/kavismith/active-directory/assets/143667203/7ee5ebbe-d7d7-419b-b975-4105593246b3)
+
+ If successful, you will log in.
+ 
 ![image](https://github.com/kavismith/active-directory/assets/143667203/5d2cc212-5c3a-4f52-84ba-1d4dd04d1ad2)
 
-
+To verify that you are logged in correctly, open the Command Prompt and type in "whoami." It should display "kavidomain\cem.tecox," confirming that you are logged in under that user account.
 </p>
 <p>
 
-After selecting "Run", you should be able to see all the users random names. Now, open up active directory users and computers. Select domain. Click on file "_EMPLOYEES" and the users names will appear. Now, try to log into Client-1 using one of the users name. Alll the users profiles have a default password "Passord1".Now, Select a random user "cem.tecox" and try to sign in with using "Password1". Log in was successful. To check to make usre you are logged in correctly open up command prompt and type in "whoami" and it should bring up domain kavidomain\cem.tecox
